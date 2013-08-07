@@ -1,0 +1,26 @@
+{
+    "name": "minibadger",
+    "version": "2.0.4",
+"manifest_version": 2,
+    "description": "It helps you",
+    "permissions": ["tabs", "http://*/*","contextMenus","http://3.44.115.170/", "http://*.toolbelt.cnbc.com/*", "clipboardRead", "clipboardWrite"],
+	"browser_action":
+	  {
+	    "default_icon": "mb-icon.png",
+	    "default_title": "minibadger"
+	  },
+    "content_scripts" : [{
+        "matches" : [ "http://*/*"],
+		"all_frames": true,
+        "js" : ["jquery.js","jquery.cookie.js","mini-badger.js","addLink.js"],
+		"css": [ "badger.css" ]		
+    }],
+	"background": {
+	    "scripts": ["background.js", "sample.js"]
+	  },
+	"icons": { "16": "mb-icon.png",
+	           "48": "mb-icon.png",
+	          "128": "mb-icon.png" }
+}
+
+
