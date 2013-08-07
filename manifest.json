@@ -1,6 +1,6 @@
 {
     "name": "minibadger",
-    "version": "2.0.4",
+    "version": "2.0.5",
 "manifest_version": 2,
     "description": "It helps you",
     "permissions": ["tabs", "http://*/*","contextMenus","http://3.44.115.170/", "http://*.toolbelt.cnbc.com/*", "clipboardRead", "clipboardWrite"],
