@@ -53,6 +53,10 @@ a.crud-header-link{padding:0px;background:#336699 url(http://fm.cnbc.com/applica
 #mobile-crud-header-link:hover{background-position: -25px -0px;}
 .with-tabs .closeBut{padding:0px!important;width:24px!important;height:16px!important;font-weight:normal!important;float:right;border-radius:0px!important;margin-left:0px!important;margin-top:2px!important;text-align:center;padding-top:4px!important;}
 .with-tabs .closeBut:hover{background:#3c75aa;color:white;}
+h2.with-tabs span.readOnlyStat{height:12px!important;padding-top:4px!important;margin-top:2px!important;}
+
+
+
 
 
 
