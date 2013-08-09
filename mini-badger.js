@@ -1,10 +1,11 @@
-
+/*
 if(document.location.href.indexOf('toolbelt') == -1 && document.location.href.indexOf('cnbc.com') != -1){
 	var s = document.createElement("script");
 	s.type = "text/javascript";
 	s.src = "http://localhost:8888/charts/google-charts.js";
 	$("div.omni").before(s);
 }
+*/
 var domain = document.domain;
 
 var publish = "http://pub.cnbc.com/";
@@ -85,9 +86,19 @@ if(document.location.href.indexOf('$DEVICE$=mobile-touch') != -1){
 	}
 	live_buttons += '<button id="hb-read" onclick="document.location.href = \'' + mobileLink + '\'">mobile</button><br/>';	
 	
+	
+	
+	
+	
 	live_buttons += '<button onclick="window.open(\'https://sc2.omniture.com/sc15/reports/index.html?rp=search%5Brows%5D%5B0%5D%5Bstring%5D%7C\' + CNBC_Settings.pageNodeId + \'&r=Report.MostPopularCustomInsight&a=Report.Standard\');">omniture</button><br/>';
-	live_buttons += '<button onclick="window.open(\'http://mpsadmin.cnbc.com/jump/using/\' + CNBC_Settings.pageNodeId);">mps</button>';
+	live_buttons += '<button onclick="window.open(\'http://mpsadmin.cnbc.com/jump/using/\' + CNBC_Settings.pageNodeId);">mps</button><br>';
 	//live_buttons += '<button id="related-cnt" onmousedown="this.className=CNBC_Settings.pageNodeId;">related</button>';
+
+	live_buttons += '<button id="hb-skin">skins</button>';
+	
+	
+	
+
 	live_buttons += '<button onclick="storedInfo=\'<button onclick=\\\'this.outerHTML = infoOutput\\\'>info</button>\'; var excludeValues = \'instance,keywords,description,hline,cat,modified\'; lastRendered = new Date(Date.parse($(\'meta[name=\\\'Search.Updated\\\']\').attr(\'content\'))); infoOutput = \'<div style=\\\'width:300px; background:#ffffff; color:#000000; padding:5px; font-size:10pt;\\\'><button style=\\\'float:right;\\\' onclick=\\\'this.parentNode.outerHTML=storedInfo\\\'>X</button><br/>\'; for(key in mps.pagevars){if(excludeValues.indexOf(key) == -1){infoOutput += key.toUpperCase() + \': <div>\' + mps.pagevars[key] + \'</div><br/>\'}}; infoOutput += \'OMNITURE PAGENAME: <div><a target=\\\'_new\\\' href=\\\'https://sc2.omniture.com/sc15/reports/index.html?rp=search%5Brows%5D%5B0%5D%5Bstring%5D%7C\' + CNBC_Settings.pageNodeId + \'&r=Report.MostPopularCustomInsight&a=Report.Standard\\\'>\' + s.pageName + \'</a></div><br/>\'; infoOutput += \'LAST PUBLISHED MANUALLY: <div>\' + lastRendered + \'</div><br/>\'; infoOutput += \'ID: <div>\' + CNBC_Settings.pageNodeId + \'</div><br/>\'; infoOutput += \'</div>\'; this.outerHTML = infoOutput">info</button>';
 }
 
@@ -97,6 +108,66 @@ if ($('#the-honeybadger')) {
 	$('#live-btns').remove();    
 }
 $('#cnbc-contents').append(live_buttons);
+
+
+$('button#hb-skin').on('click', function(){
+								
+									if($('#skin-dev').length){
+										$('#skin-dev').remove();
+									}else{
+										if(typeof $.cookie('csspath') != 'undefined'){
+											var csspath = $.cookie('csspath');
+										}else{
+											var csspath = '';
+										}
+										if(typeof $.cookie('jspath') != 'undefined'){
+											var jspath = $.cookie('jspath');
+										}else{
+											var jspath = '';
+										}
+										var skinDevUI = '<div id="skin-dev">\
+															<h3>css path</h3>\
+															<input type="text" value="' + csspath + '" name="css">\
+															<h3>js path</h3>\
+															<input type="text" value="' + jspath + '" name="js"><br>\
+															<button id="update-skin">update</button>\
+														</div>';	
+										$(this).parent().append(skinDevUI);
+									}
+								});
+
+$('button#update-skin').live('click', function(){
+									
+									var csspath = $('input[name="css"]').attr('value');
+									var jspath = $('input[name="js"]').attr('value');
+									$.cookie('csspath', csspath, { path : '/', expires : 1000 });
+									$.cookie('jspath', jspath, { path : '/', expires : 1000 });
+									document.location.reload();
+								});
+
+if(document.location.href.indexOf('www.cnbc.com') != -1 && typeof $.cookie('jspath') != 'undefined' && $.cookie('jspath') != ''){
+	var jspaths = $.cookie('jspath').split(' ');
+	for(i=0; i<jspaths.length; i++){
+		var s = document.createElement("script");
+		s.type = "text/javascript";
+		s.src = jspaths[i];
+		$("div.omni").before(s);
+	}
+	
+}
+
+if(document.location.href.indexOf('www.cnbc.com') != -1 && typeof $.cookie('csspath') != 'undefined' && $.cookie('csspath') != ''){
+	
+	var csspaths = $.cookie('csspath').split(' ');
+	for(i=0; i<csspaths.length; i++){
+		$("<link/>", {
+			rel: "stylesheet",
+			type: "text/css",
+			href: csspaths[i]
+		}).appendTo($("head").eq(0));
+	}
+	
+}
 
 $('body').ready( function(){
 	if(document.location.href.indexOf('cnbc.com') != -1){					  
