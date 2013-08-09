@@ -69,13 +69,29 @@ var specialCharacterBox = '<div id="special-characters"><ul id="special-char-lis
 
 
 
+var live_buttons = '<div id="live-btns">';
 
-var live_buttons = '<div id="live-btns"><button id="hb-live-edit" onclick="window.open(\'http://\' + document.location.host.replace(\'www\',\'toolbelt\').replace(\'pub\',\'toolbelt\') + \'/node/\' + CNBC_Settings.pageNodeId + \'/edit\');">edit</button>';
-live_buttons += '<button id="hb-read" onclick="window.open(\'http://\' + document.location.host.replace(\'www\',\'toolbelt\').replace(\'pub\',\'toolbelt\') + \'/node/\' + CNBC_Settings.pageNodeId + \'/edit?readOnly=true\');">read</button><br/>';
-live_buttons += '<button onclick="window.open(\'https://sc2.omniture.com/sc15/reports/index.html?rp=search%5Brows%5D%5B0%5D%5Bstring%5D%7C\' + CNBC_Settings.pageNodeId + \'&r=Report.MostPopularCustomInsight&a=Report.Standard\');">omniture</button><br/>';
-live_buttons += '<button onclick="window.open(\'http://mpsadmin.cnbc.com/jump/using/\' + CNBC_Settings.pageNodeId);">mps</button>';
-//live_buttons += '<button id="related-cnt" onmousedown="this.className=CNBC_Settings.pageNodeId;">related</button>';
-live_buttons += '<button onclick="storedInfo=\'<button onclick=\\\'this.outerHTML = infoOutput\\\'>info</button>\'; var excludeValues = \'instance,keywords,description,hline,cat,modified\'; lastRendered = new Date(Date.parse($(\'meta[name=\\\'Search.Updated\\\']\').attr(\'content\'))); infoOutput = \'<div style=\\\'width:300px; background:#ffffff; color:#000000; padding:5px; font-size:10pt;\\\'><button style=\\\'float:right;\\\' onclick=\\\'this.parentNode.outerHTML=storedInfo\\\'>X</button><br/>\'; for(key in mps.pagevars){if(excludeValues.indexOf(key) == -1){infoOutput += key.toUpperCase() + \': <div>\' + mps.pagevars[key] + \'</div><br/>\'}}; infoOutput += \'OMNITURE PAGENAME: <div><a target=\\\'_new\\\' href=\\\'https://sc2.omniture.com/sc15/reports/index.html?rp=search%5Brows%5D%5B0%5D%5Bstring%5D%7C\' + CNBC_Settings.pageNodeId + \'&r=Report.MostPopularCustomInsight&a=Report.Standard\\\'>\' + s.pageName + \'</a></div><br/>\'; infoOutput += \'LAST PUBLISHED MANUALLY: <div>\' + lastRendered + \'</div><br/>\'; infoOutput += \'ID: <div>\' + CNBC_Settings.pageNodeId + \'</div><br/>\'; infoOutput += \'</div>\'; this.outerHTML = infoOutput">info</button></div>';
+if(document.location.href.indexOf('$DEVICE$=mobile-touch') != -1){
+	live_buttons += '<button id="hb-read" onclick="document.location.href = \'' + document.location.href.replace('$DEVICE$=mobile-touch', '') + '\'">desktop</button><br/>';	
+}else{
+
+	live_buttons += '<button id="hb-live-edit" onclick="window.open(\'http://\' + document.location.host.replace(\'www\',\'toolbelt\').replace(\'pub\',\'toolbelt\') + \'/node/\' + CNBC_Settings.pageNodeId + \'/edit\');">edit</button>';
+	live_buttons += '<button id="hb-read" onclick="window.open(\'http://\' + document.location.host.replace(\'www\',\'toolbelt\').replace(\'pub\',\'toolbelt\') + \'/node/\' + CNBC_Settings.pageNodeId + \'/edit?readOnly=true\');">read</button><br/>';
+	
+	if(document.location.href.indexOf('?') != -1){
+		var mobileLink = document.location.href + '&$DEVICE$=mobile-touch';
+	}else{
+		var mobileLink = document.location.href + '?$DEVICE$=mobile-touch';
+	}
+	live_buttons += '<button id="hb-read" onclick="document.location.href = \'' + mobileLink + '\'">mobile</button><br/>';	
+	
+	live_buttons += '<button onclick="window.open(\'https://sc2.omniture.com/sc15/reports/index.html?rp=search%5Brows%5D%5B0%5D%5Bstring%5D%7C\' + CNBC_Settings.pageNodeId + \'&r=Report.MostPopularCustomInsight&a=Report.Standard\');">omniture</button><br/>';
+	live_buttons += '<button onclick="window.open(\'http://mpsadmin.cnbc.com/jump/using/\' + CNBC_Settings.pageNodeId);">mps</button>';
+	//live_buttons += '<button id="related-cnt" onmousedown="this.className=CNBC_Settings.pageNodeId;">related</button>';
+	live_buttons += '<button onclick="storedInfo=\'<button onclick=\\\'this.outerHTML = infoOutput\\\'>info</button>\'; var excludeValues = \'instance,keywords,description,hline,cat,modified\'; lastRendered = new Date(Date.parse($(\'meta[name=\\\'Search.Updated\\\']\').attr(\'content\'))); infoOutput = \'<div style=\\\'width:300px; background:#ffffff; color:#000000; padding:5px; font-size:10pt;\\\'><button style=\\\'float:right;\\\' onclick=\\\'this.parentNode.outerHTML=storedInfo\\\'>X</button><br/>\'; for(key in mps.pagevars){if(excludeValues.indexOf(key) == -1){infoOutput += key.toUpperCase() + \': <div>\' + mps.pagevars[key] + \'</div><br/>\'}}; infoOutput += \'OMNITURE PAGENAME: <div><a target=\\\'_new\\\' href=\\\'https://sc2.omniture.com/sc15/reports/index.html?rp=search%5Brows%5D%5B0%5D%5Bstring%5D%7C\' + CNBC_Settings.pageNodeId + \'&r=Report.MostPopularCustomInsight&a=Report.Standard\\\'>\' + s.pageName + \'</a></div><br/>\'; infoOutput += \'LAST PUBLISHED MANUALLY: <div>\' + lastRendered + \'</div><br/>\'; infoOutput += \'ID: <div>\' + CNBC_Settings.pageNodeId + \'</div><br/>\'; infoOutput += \'</div>\'; this.outerHTML = infoOutput">info</button>';
+}
+
+live_buttons += '</div>';
 
 if ($('#the-honeybadger')) {
 	$('#live-btns').remove();    
@@ -107,7 +123,7 @@ $('#related-cnt').live('click', function(){
 	var nid = $('#related-cnt')[0].className;
 	$.getJSON('http://toolbelt.cnbc.com/services/search/resultswithsummaryviews/?parents=0&contemplates=0&status=3,4,6&assocs=AND' + nid + 'AT3,4,5,20,26&page=1&size=100&sortorder=desc&sortfield=last_pub_date&lastoffset=0', function(data) {
 	  var items = [];
-	 console.log(data);
+	 //console.log(data);
 	  $.each(data.searchresults, function(key, val) {
 		items.push('<li><a href="http://www.cnbc.com/id/' + data.searchresults[key]['nid'] + '">' + data.searchresults[key]['slug'] + '</a></li>');
 	  });
@@ -178,7 +194,9 @@ if(document.location.href.indexOf('/clone') != -1){
 	
 }
 
-if(document.location.href.indexOf('toolbelt') != -1){
+if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.indexOf('wym.html') == -1){
+	var NID = $('input[name="publish_nid"]').attr('value');
+	
 	var dateLineSort = '<option value="unpublish_date">Unpublish Date</option><option value="dateline">Dateline</option><option value="title">Title</option><option value="slug">Slug</option>';
 	$("select#pTypes").append(dateLineSort);
 	
@@ -217,24 +235,24 @@ if(document.location.href.indexOf('toolbelt') != -1){
 				var modSizeImg = $(this).attr('src').replace('140x105', '320x180');
 				var width = 320;
 				var height = 180;
-				console.log(1);
+				//console.log(1);
 			}else if($(this).parent().parent().parent().hasClass("sortable")){
 				var modSizeImg = $(this).attr('src').replace('140x105', '600x400');
 				var width = 600;
 				var height = 400;
-				console.log(3);
+				//console.log(3);
 			}else{
 				var modSizeImg = $(this).attr('src').replace('140x105', '530x298');
 				var width = 530;
 				var height = 298;
-				console.log(3);
+				//console.log(3);
 			}
 		}else{
 			var modSizeImg = $(this).attr('src').replace('530x298', '140x105').replace('320x180', '140x105');
 			var width = 140;
 			var height = 105;
 			
-				console.log(4);
+				//console.log(4);
 		}
 		$(this).error(function(){
 			this.src = 'http://fm-preview.cnbc.com/applications/cnbc.com/resources/img/editorial/2013/07/19/100900672-error.530x298.jpg?d=1374273922';							  
@@ -347,7 +365,7 @@ if(document.location.href.indexOf('toolbelt') != -1){
 										
 	var recentContemplates = getContemplates();
 	var contemplateOut = '<div id="recent-contemplates"><h1>Recent Contemplates</h1><div id="contemplateContainer"><div><ul>';
-	console.log(recentContemplates);
+	//console.log(recentContemplates);
 	if(recentContemplates){
 		var contemplateCount = Object.keys(recentContemplates).length;
 	}else{
@@ -361,14 +379,14 @@ if(document.location.href.indexOf('toolbelt') != -1){
 		
 		if(typeof currentContemplate.type != 'undefined'){
 			var imageTag = '<img title="' + currentContemplate.type + '" src="' + contemplateList[currentContemplate.type].icon + '">';
-			console.log(contemplateList[currentContemplate.type].icon);
+			//console.log(contemplateList[currentContemplate.type].icon);
 		}else{
 			var imageTag = '';	
 		}
 		contemplateOut += '<li><a href="/node/' + currentContemplate.nid + '/clone"><sub>' + imageTag + '</sub> ' + currentContemplate.slug + '</a></li>';
 		
 		contemplateIndex = parseInt(contemplateIndex);
-		console.log(contemplateIndex, Math.round(contemplateCount/2));
+		//console.log(contemplateIndex, Math.round(contemplateCount/2));
 		if(contemplateIndex == Math.round(contemplateCount/2)-1){
 			contemplateOut += '</ul></div><div><ul>';
 		}
@@ -378,8 +396,25 @@ if(document.location.href.indexOf('toolbelt') != -1){
 		$("#contemplateDisp").before(contemplateOut);
 		$("#recent-contemplates").css('float', 'right');
 	}
-	console.log($("#contemplateDisp"));
-								
+	//console.log($("#contemplateDisp"));
+	
+
+	var prodButtons = '<a href="http://www.cnbc.com/id/' + NID + '" target="_new" class="crud-header-link" id="desktop-crud-header-link" title="view desktop production">DESKTOP</a> <a href="http://www.cnbc.com/id/' + NID + '?$DEVICE$=mobile-touch" target="_new" class="crud-header-link" id="mobile-crud-header-link" title="view mobile production">MOBILE</a> ';
+	$(".with-tabs .fav").after(prodButtons);
+
+	if(document.location.href.indexOf('readOnly=true') == -1){
+		var readButton = ' <a href="/node/' + NID + '/edit?readOnly=true" class="crud-header-link" id="read-only-crud-header-link" title="Open this asset in read only mode">READ ONLY</a> ';
+		$(".with-tabs .fav").after(readButton);
+	}else{
+		var editButton = '<a href="/node/' + NID + '/edit" class="crud-header-link" id="edit-crud-header-link" title="Open this asset in edit mode">EDIT</a>';
+		$(".with-tabs .fav").after(editButton);
+	}
+	
+	$(".crud-header-link").text(' ');
+	
+
+	
+	
 	
 /*
 	if(document.location.href.indexOf('toolbelt.cnbc.com/search-home') != -1){
@@ -414,27 +449,27 @@ if(document.location.href.indexOf('toolbelt') != -1){
 
 }
 
-function addLiveLink(theID){
+function addLiveLink(NID){
 	
 		
 		 
-	$('span#' + theID + ' div.promoTitle').append('<a href="http://www.cnbc.com/id/' + theID + '" target="_new" class="small">LIVE</a>');;
+	$('span#' + NID + ' div.promoTitle').append('<a href="http://www.cnbc.com/id/' + NID + '" target="_new" class="small">LIVE</a>');;
 	
 	
 }
 
 
-function correctThumbSize(theID){
+function correctThumbSize(NID){
 	
-	var theImg = $('span#' + theID + ' img.promo, span#' + theID + 'dropped img.promo');
+	var theImg = $('span#' + NID + ' img.promo, span#' + NID + 'dropped img.promo');
 	theImg.css('width', 140);
 	theImg.css('height', 105);
 }
 
 
-function enlargeThumb(theID){
+function enlargeThumb(NID){
 	
-	var theImg = $('span#' + theID + ' img.promo, span#' + theID + 'dropped img.promo');
+	var theImg = $('span#' + NID + ' img.promo, span#' + NID + 'dropped img.promo');
 	theImg.click();
 	
 }
