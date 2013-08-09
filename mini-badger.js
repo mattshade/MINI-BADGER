@@ -126,13 +126,15 @@ $('button#hb-skin').on('click', function(){
 											var jspath = '';
 										}
 										var skinDevUI = '<div id="skin-dev">\
+															This is for developing skins.\
 															<h3>css path</h3>\
 															<input type="text" value="' + csspath + '" name="css">\
 															<h3>js path</h3>\
 															<input type="text" value="' + jspath + '" name="js"><br>\
-															<button id="update-skin">update</button>\
+															<button id="update-skin">update</button><br>\
+															<small>Serparate multiple paths with a space.</small>\
 														</div>';	
-										$(this).parent().append(skinDevUI);
+										$(this).after(skinDevUI);
 									}
 								});
 
