@@ -520,6 +520,7 @@ $('#mb-cs-query').on('keyup', function(event){
 	//console.log($('ul#asset-creators a.items:contains("chris")'))
 	$('ul#asset-creators a.items:not(.selected)').hide();
 	if(query != ''){
+		if(query == '%'){query=''};
 		var matchingCount = $('ul#asset-creators a.items:contains("' + query + '")').show().length;
 		
 		if(event.which == 13 && matchingCount < 3){
