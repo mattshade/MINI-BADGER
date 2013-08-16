@@ -127,14 +127,14 @@ $('button#hb-skin').on('click', function(){
 										}
 										var skinDevUI = '<div id="skin-dev">\
 															This is for developing skins.\
-															<h3>css path</h3>\
+															<h3>css URLs</h3>\
 															<input type="text" value="' + csspath + '" name="css">\
-															<h3>js path</h3>\
+															<h3>js URLs</h3>\
 															<input type="text" value="' + jspath + '" name="js"><br>\
 															<button id="update-skin">update</button><br>\
-															<small>Serparate multiple paths with a space.</small>\
+															<small>Serparate multiple URLs with a space.</small>\
 														</div>';	
-										$(this).after(skinDevUI);
+										$(this).before(skinDevUI);
 									}
 								});
 
@@ -348,41 +348,44 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 	
 	var contemplateLabels = { media: "Media", leaf: "Pages", tag: "Sections", utility: "Utilities",  button: ""}
 	var contemplateList = 	{ 
-								"Blog Post": {group:"leaf", icon:"/sites/all/themes/cms_theme/images/icon_blogpost.png"},
 								"News Story": {group:"leaf", icon:"/sites/all/themes/cms_theme/images/icon_cnbcnewsstory.png"},
-								"Image": {group:"media", icon:"/sites/all/themes/cms_theme/images/icon_image.png"},
-								"Saved Search": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_cnbcsavedsearch.png"},
-								"Security": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_security.png"},
-								"Skin": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_skin.png"},
+								"Blog Post": {group:"leaf", icon:"/sites/all/themes/cms_theme/images/icon_blogpost.png"},
 								"SlideShow": {group:"leaf", label: "Slide Show", icon: "/sites/all/themes/cms_theme/images/icon_slideshow.png"},
-								"Source": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_source.png"},
-								"Usage Rule": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_usagerule.png"},
-								"WebResource": {group:"media", label: "Web Resource", icon: "/sites/all/themes/cms_theme/images/icon_webresource.png"},
-								"Webservice": {group:"media", label: "Web Service", icon: "/sites/all/themes/cms_theme/images/icon_webservice.png"},
-								"Wild Card": {group:"media", label: "Wildcard", icon: "/sites/all/themes/cms_theme/images/icon_wildcard.png"},
-								"Wire Story": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_wirestory.png"},
-								"Quiz Entry": {group:"leaf", label: "Quiz", icon: "/sites/all/themes/cms_theme/images/icon_quiz.png"},
-								"Promotional Package": {group:"utility", label: "Promo Package", icon: "/sites/all/themes/cms_theme/images/icon_promopackage.png"},
-								"Product": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_product.png"},
-								"Press Release": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_pressrelease.png"},
-								"Poll": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_poll.png"},
-								"Place": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_place.png"},
-								"Person": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_person.png"},
 								"Partner Story": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_partnerstory.png"},
-								"Organization": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_organization.png"},
+								"Wire Story": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_wirestory.png"},
+								"Source": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_source.png"},
 								"Franchise": {group:"tag", icon:"/sites/all/themes/cms_theme/images/icon_franchise.png"},
-								"Flash": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_flash.png"},
-								"File": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_file.png"},
-								"Event": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_event.png"},
+								"Creator": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_creator.png"},
+								"Person": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_person.png"},
+								"Organization": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_organization.png"},
+								"Company": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_company.png"},
+								"Place": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_place.png"},
+								"Image": {group:"media", icon:"/sites/all/themes/cms_theme/images/icon_image.png"},
+								"Video asset": {group:"media", icon:"/sites/all/themes/cms_theme/images/icon_cnbcvideo.png"},
+								"Chart": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_chart.png"},
+								"Webservice": {group:"media", label: "Web Service", icon: "/sites/all/themes/cms_theme/images/icon_webservice.png"},
+								"WebResource": {group:"media", label: "Web Resource", icon: "/sites/all/themes/cms_theme/images/icon_webresource.png"},
+								"Poll": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_poll.png"},
+								"Audio": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_audio.png"},
+								"Saved Search": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_cnbcsavedsearch.png"},
+								"Skin": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_skin.png"},
 								"Episode": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_episode.png"},
 								"Editorial Search": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_editorialsearch.png"},
+								"File": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_file.png"},
 								"Editorial File": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_editorialfile.png"},
-								"Creator": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_creator.png"},
-								"Company": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_company.png"},
-								"Chart": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_chart.png"},
-								"Audio": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_audio.png"},
-								"Team": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_team.png"},
+								"Flash": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_flash.png"},
+								"Markup Template": {group:"utility"},
+								"Event": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_event.png"},
+								"Wild Card": {group:"media", label: "Wildcard", icon: "/sites/all/themes/cms_theme/images/icon_wildcard.png"},
+								"Press Release": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_pressrelease.png"},
 								"Project": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_project.png"},
+								"Product": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_product.png"},
+								"Promotional Package": {group:"utility", label: "Promo Package", icon: "/sites/all/themes/cms_theme/images/icon_promopackage.png"},
+								"Quiz Entry": {group:"leaf", label: "Quiz", icon: "/sites/all/themes/cms_theme/images/icon_quiz.png"},
+								"Security": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_security.png"},
+								"Team": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_team.png"},
+								"Usage Rule": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_usagerule.png"},
+								
 								"From Scratch": {group:"button", icon: "/sites/all/themes/cms_theme/images/edit-icon.png", label: "From Scratch..."},
 								
 							};
@@ -390,7 +393,7 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 	var commonAssets = ['Blog Post', 'Image', 'News Story', 'Franchise', 'Skin', 'Creator', 'Chart', 'Saved Search', 'From Scratch'];
 	$("table.menu1").eq(0).prepend('<tr><td colspan="2"><div id="contemplateDisp"></div></td></tr>').css('border','1px solid #eeeeee').css('width','650px').css('z-index','50000').css('-webkit-box-shadow', '0px 0px 10px 0px #000');
 	
-	
+	var commonSearchedAssets = ['Blog Post', 'Image', 'News Story', 'Franchise', 'Skin', 'Creator', 'Chart', 'Saved Search','Video asset', 'Partner Story', 'SlideShow', 'Company', 'Source', 'Person', 'Organization', 'Place', 'Webservice', 'WebResource', 'Event'];
 	
 	for(key in contemplateLabels){
 		$("#contemplateDisp").append('<div class="contemplate-label" id="contemplate-label-' + key + '"><h1>' + contemplateLabels[key] + '</h1></div>');
@@ -471,6 +474,173 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 	}
 	//console.log($("#contemplateDisp"));
 	
+//organize search config
+
+//$('#tool .search-tool').find('img').remove();
+$('#tool .search-tool').append('<span>Advanced</span>').css('color', 'black');
+console.log('search tool', $('#tool .search-tool'));
+$('.configure ul.menu').remove();
+$('.display').remove();
+//$('.toolBar .form-text').attr('style', '').css('width', '100%');
+/*
+$('.toolBar .form-text').live('change', function(){
+	console.log('changed');										   
+});
+*/
+
+
+
+
+
+$('.results ul').addClass('selected');
+
+$('.results').append($('ul#asset-flags'));
+$('.results').prepend($('ul#asset-states'));
+
+$('.results').css('height', '100%').css('width', '100%');
+
+
+
+$('ul#asset-types').before('<h2 id="mb-search-types">Types: </h2>');
+$('ul#asset-states').before('<h2 id="mb-search-states">States: </h2>');
+$('ul#asset-creators').before('<h2 id="mb-search-creators">Creators: </h2><div id="mb-cs"><input type="text" id="mb-cs-query"></div>');
+$('ul#asset-flags').before('<h2 id="mb-search-flags">Flags: </h2>');
+
+$('ul#asset-creators a.items').each(function(){
+	$(this).text($(this).text().toLowerCase().replace('.', ' ')).css('text-transform', 'Capitalize');
+});
+
+$('ul#asset-creators a.items:not(.selected)').hide();
+
+$('#mb-cs-query').on('keyup', function(event){ 
+	console.log(event.which);				   
+	var query = $(this).attr('value').toLowerCase();
+	console.log(query);
+	//$('a.items:contains("' + assetType + '")');
+	//console.log($('ul#asset-creators a.items:contains("chris")'))
+	$('ul#asset-creators a.items:not(.selected)').hide();
+	if(query != ''){
+		var matchingCount = $('ul#asset-creators a.items:contains("' + query + '")').show().length;
+		
+		if(event.which == 13 && matchingCount < 3){
+			
+			$('ul#asset-creators a.items:contains("' + query + '")').each(function(){	
+					var theAnchor = document.getElementById($(this).attr('id'));
+					dispatchMouseEvent(theAnchor, 'click', true, true);
+			});	
+		}
+	}
+})
+//$('.toolBar .form-text').css('width', '100%');
+$('#tool .search-tool').on('click', function(){
+	//console.log(window.innerWidth);										 
+	//console.log($('.toolBar .form-text').prop('offsetLeft'))
+	setTimeout("$('.toolBar .form-text').css('width', window.innerWidth - $('.toolBar .form-text').prop('offsetLeft') )", 10);									 	console.log($('input#mb-cs-query'));
+	$('#mb-cs-query').attr('value', 'Find Creator');
+	//console.log($('.toolBar .form-text'));										 
+	//console.log('clikced');										   
+});
+
+$('#asset-types').prepend('<li id="organized-assets"><ul id="media"><li><b><a href="#" class="items block group">Media</a></b></li></ul><ul id="leaf"><li><b><a href="#" class="items block group">Pages</a></b></li></ul><ul id="tag"><li><b><a href="#" class="items block group">Sections</a></b></li></ul><ul id="utility"><li><b><a href="#" class="items block group">Utilities</a></b></li></ul></li>');
+
+$('.organized-assets').css('background', '#ffffff');
+
+$('#asset-types a.items').each(function(){
+										
+								$(this).attr('class', $(this).attr('class').replace('items', 'items block'));
+							});
+
+
+for(assetType in contemplateList){
+	//if(contemplateList[assetType].group);
+	var theLink = $('a.items:contains("' + assetType + '")');
+	if(commonSearchedAssets.indexOf(assetType) != -1){
+		theLink.append('<img src="' + contemplateList[assetType].icon + '" width="18" height="15">');
+	}
+	$('#organized-assets ul#' + contemplateList[assetType].group).append(theLink.parent());
+	
+	//console.log('group ul', $('#organized-assets ul#' + contemplateList[assetType].group));
+	//$('a.items:contains("' + assetType + '")').attr('class', "items block");
+	/*
+	$('<ul/>', {
+		'class': 'associate aTypes selected',
+		html: '<li><a id="T-80" class="items" href="#">' + assetType + '</a></li>'
+	}).prepend($('div.results'));
+	*/
+}
+
+var dispatchMouseEvent = function(target, var_args) {
+  var e = document.createEvent("MouseEvents");
+  // If you need clientX, clientY, etc., you can call
+  // initMouseEvent instead of initEvent
+  e.initEvent.apply(e, Array.prototype.slice.call(arguments, 1));
+  target.dispatchEvent(e);
+};
+
+$('.group.items').on('click', function(){
+									  // console.log($(this).parent().parent().parent().find('.items').not(".group").eq(0))
+									 //  $(this).parent().parent().parent().find('.items').not(".group").on('click', function(){alert('test')})
+										var selectedCount = $(this).parent().parent().parent().find('.items.selected').length;
+										var totalCount = $(this).parent().parent().parent().find('.items').length-1;
+										
+										//console.log(selectedCount, totalCount)
+										
+										if(selectedCount == 0){
+											$(this).parent().parent().parent().find('.items').not(".group").each(function(){
+												
+												
+												
+												if(commonSearchedAssets.indexOf($(this).text().trim()) != -1){
+													
+													var theAnchorID = $(this).attr('id');
+													
+													var theAnchor = document.getElementById(theAnchorID);
+													dispatchMouseEvent(theAnchor, 'click', true, true);
+												}
+												
+											});
+
+										}else if(selectedCount == totalCount){
+											$(this).parent().parent().parent().find('.items').not(".group").each(function(){
+												var theAnchorID = $(this).attr('id');		
+												var theAnchor = document.getElementById(theAnchorID);
+												dispatchMouseEvent(theAnchor, 'click', true, true);
+											});
+										}else{
+											$(this).parent().parent().parent().find('.items').not(".group").each(function(){
+												
+												
+												
+												if(!$(this).hasClass('selected')){
+													
+													var theAnchorID = $(this).attr('id');
+													
+													var theAnchor = document.getElementById(theAnchorID);
+													dispatchMouseEvent(theAnchor, 'click', true, true);
+												}
+												
+											});
+										}
+});
+
+/*
+dispatchMouseEvent(element, 'mouseover', true, true);
+dispatchMouseEvent(element, 'mousedown', true, true);
+dispatchMouseEvent(element, 'click', true, true);
+dispatchMouseEvent(element, 'mouseup', true, true);
+*/
+
+/*
+$('.criteria-items .layout').css('width', '250px').prepend('<li><a id="organize" class="dLayout" title="ORGANIZE" href="#">ORGANIZE</a></li>').on('click', function(){
+																																									
+
+				console.log($('#asset-types li').length)																																					
+				$(this).css('background', '#ffcc00');																																					
+				console.log($(this));																																									
+});
+*/
+
+
 
 	var prodButtons = '<a href="http://www.cnbc.com/id/' + NID + '" target="_new" class="crud-header-link" id="desktop-crud-header-link" title="view desktop production">DESKTOP</a> <a href="http://www.cnbc.com/id/' + NID + '?$DEVICE$=mobile-touch" target="_new" class="crud-header-link" id="mobile-crud-header-link" title="view mobile production">MOBILE</a> ';
 	$(".with-tabs .fav").after(prodButtons);
