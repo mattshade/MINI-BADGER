@@ -6,6 +6,8 @@ if(document.location.href.indexOf('toolbelt') == -1 && document.location.href.in
 	$("div.omni").before(s);
 }
 */
+
+
 var domain = document.domain;
 
 var publish = "http://pub.cnbc.com/";
@@ -158,7 +160,7 @@ if(document.location.href.indexOf('www.cnbc.com') != -1 && typeof $.cookie('jspa
 	
 }
 
-if(document.location.href.indexOf('www.cnbc.com') != -1 && typeof $.cookie('csspath') != 'undefined' && $.cookie('csspath') != ''){
+if((document.location.href.indexOf('www.cnbc.com') != -1 || document.location.href.indexOf('pub.cnbc.com') != -1 ) && typeof $.cookie('csspath') != 'undefined' && $.cookie('csspath') != ''){
 	
 	var csspaths = $.cookie('csspath').split(' ');
 	for(i=0; i<csspaths.length; i++){
@@ -341,7 +343,7 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 	//$('ul.tab-filter').append(dependenciesBtn);
 	
 	//$("table.menu1 table tr td").css('margin', '0px').css('text-align', 'left');
-	$("table.menu1 table tr a").css('display', 'block').css('width', '100%').css('height','100%').css('padding', '2px').css('margin', '0px');
+	$("div.menu1 a").css('display', 'block').css('width', '100%').css('height','100%').css('padding', '2px').css('margin', '0px');
 	
 	
 	
@@ -352,7 +354,7 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 								"Blog Post": {group:"leaf", icon:"/sites/all/themes/cms_theme/images/icon_blogpost.png"},
 								"SlideShow": {group:"leaf", label: "Slide Show", icon: "/sites/all/themes/cms_theme/images/icon_slideshow.png"},
 								"Partner Story": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_partnerstory.png"},
-								"Wire Story": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_wirestory.png"},
+								"Advertorial": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_sponsored.png"},
 								"Source": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_source.png"},
 								"Franchise": {group:"tag", icon:"/sites/all/themes/cms_theme/images/icon_franchise.png"},
 								"Creator": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_creator.png"},
@@ -363,9 +365,6 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 								"Image": {group:"media", icon:"/sites/all/themes/cms_theme/images/icon_image.png"},
 								"Video asset": {group:"media", icon:"/sites/all/themes/cms_theme/images/icon_cnbcvideo.png"},
 								"Chart": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_chart.png"},
-								"Webservice": {group:"media", label: "Web Service", icon: "/sites/all/themes/cms_theme/images/icon_webservice.png"},
-								"WebResource": {group:"media", label: "Web Resource", icon: "/sites/all/themes/cms_theme/images/icon_webresource.png"},
-								"Poll": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_poll.png"},
 								"Audio": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_audio.png"},
 								"Saved Search": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_cnbcsavedsearch.png"},
 								"Skin": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_skin.png"},
@@ -374,14 +373,18 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 								"File": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_file.png"},
 								"Editorial File": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_editorialfile.png"},
 								"Flash": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_flash.png"},
+								"Poll": {group:"media", icon: "/sites/all/themes/cms_theme/images/icon_poll.png"},
 								"Markup Template": {group:"utility"},
 								"Event": {group:"tag", icon: "/sites/all/themes/cms_theme/images/icon_event.png"},
+								"Webservice": {group:"media", label: "Web Service", icon: "/sites/all/themes/cms_theme/images/icon_webservice.png"},
+								"WebResource": {group:"media", label: "Web Resource", icon: "/sites/all/themes/cms_theme/images/icon_webresource.png"},
 								"Wild Card": {group:"media", label: "Wildcard", icon: "/sites/all/themes/cms_theme/images/icon_wildcard.png"},
 								"Press Release": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_pressrelease.png"},
 								"Project": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_project.png"},
 								"Product": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_product.png"},
 								"Promotional Package": {group:"utility", label: "Promo Package", icon: "/sites/all/themes/cms_theme/images/icon_promopackage.png"},
 								"Quiz Entry": {group:"leaf", label: "Quiz", icon: "/sites/all/themes/cms_theme/images/icon_quiz.png"},
+								"Wire Story": {group:"leaf", icon: "/sites/all/themes/cms_theme/images/icon_wirestory.png"},
 								"Security": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_security.png"},
 								"Team": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_team.png"},
 								"Usage Rule": {group:"utility", icon: "/sites/all/themes/cms_theme/images/icon_usagerule.png"},
@@ -391,13 +394,13 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 							};
 	
 	var commonAssets = ['Blog Post', 'Image', 'News Story', 'Franchise', 'Skin', 'Creator', 'Chart', 'Saved Search', 'From Scratch'];
-	$("table.menu1").eq(0).prepend('<tr><td colspan="2"><div id="contemplateDisp"></div></td></tr>').css('border','1px solid #eeeeee').css('width','650px').css('z-index','50000').css('-webkit-box-shadow', '0px 0px 10px 0px #000');
+	$("div.menu1").eq(0).prepend('<div id="contemplateDisp"></div>').css('border','1px solid #eeeeee').css('width','650px').css('z-index','50000').css('-webkit-box-shadow', '0px 0px 10px 0px #000');
 	
-	var commonSearchedAssets = ['Blog Post', 'Image', 'News Story', 'Franchise', 'Skin', 'Creator', 'Chart', 'Saved Search','Video asset', 'Partner Story', 'SlideShow', 'Company', 'Source', 'Person', 'Organization', 'Place', 'Webservice', 'WebResource', 'Event'];
+	var commonSearchedAssets = ['Blog Post', 'Image', 'News Story', 'Franchise', 'Skin', 'Creator', 'Chart', 'Saved Search','Video asset', 'Partner Story', 'SlideShow', 'Company', 'Source', 'Person', 'Organization', 'Place', 'Event'];
 	
 	for(key in contemplateLabels){
 		$("#contemplateDisp").append('<div class="contemplate-label" id="contemplate-label-' + key + '"><h1>' + contemplateLabels[key] + '</h1></div>');
-		$("table.menu1 table td a").each(function( index ) {
+		$("div.menu1 ul li a").each(function( index ) {
 		
 		
 			
@@ -422,6 +425,12 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 					if(contemplateList[$(this).text()].label){
 						$(this).text(contemplateList[$(this).text()].label);
 					}
+					if($(this).text().indexOf('Scratch') != -1){
+						$(this).text('Create From Scratch >').wrap('<div></div>');
+						
+						
+					}
+					
 					//console.log(contemplateLabels[key]);
 					//console.log($(this).text());
 					//console.log('');
@@ -429,13 +438,18 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 		
 
 		}).css('color', '#333333');
+		
 		$("#contemplate-label-" + key).css('text-align','left').css('margin', '0px 0px 5px 15px').css('width','140px').css('font-size', '125%');
+		if(key == 'button'){
+			$("#contemplate-label-" + key).css('width','90%');
+			
+		}
 	}
 	
-	$("table.menu1 tr td img").css('float', 'left').css('position', 'relative').css('display','inline').css('left', '-6px');
-	$("table.menu1 tr td").css('background', '#efefef').css('background-image', 'none');
+	$("div.menu1 img").css('float', 'left').css('position', 'relative').css('display','inline').css('left', '-6px');
+	$("div.menu1").css('background', '#efefef').css('background-image', 'none');
 	$(".contemplate-label").css("float", "left");
-	$("table.menu1 table").remove();
+	//$("div.menu1 table").remove();
 	
 	
 										
@@ -468,17 +482,20 @@ if(document.location.href.indexOf('toolbelt') != -1 && document.location.href.in
 		}
 	}
 	contemplateOut += '</ul></div></div></div>';
+	
+	
+	
 	if(contemplateCount){
 		$("#contemplateDisp").before(contemplateOut);
-		$("#recent-contemplates").css('float', 'right');
+		//$("#recent-contemplates").css('float', 'right').css('background', 'orange');
 	}
 	//console.log($("#contemplateDisp"));
 	
 //organize search config
 
 //$('#tool .search-tool').find('img').remove();
-$('#tool .search-tool').append('<span>Advanced</span>').css('color', 'black');
-console.log('search tool', $('#tool .search-tool'));
+//$('#tool .search-tool').append('<span>Advanced</span>').css('color', 'black');
+//console.log('search tool', $('#tool .search-tool'));
 $('.configure ul.menu').remove();
 $('.display').remove();
 //$('.toolBar .form-text').attr('style', '').css('width', '100%');
@@ -490,27 +507,32 @@ $('.toolBar .form-text').live('change', function(){
 
 
 
+$('div.configure').css('width', 732 );
 
+$('.configure .results ul').addClass('selected');
 
-$('.results ul').addClass('selected');
+$('.configure .results').prepend($('ul#asset-flags'));
+$('.configure .results').prepend($('ul#asset-states'));
+$('.configure .results').append($('ul#asset-creators'));
 
-$('.results').append($('ul#asset-flags'));
-$('.results').prepend($('ul#asset-states'));
+//$('.configure .results').append('<div><br><br><br><br><br><br><br><br></div>');
+$('.configure .results').css('height', '90%').css('width', '700');
 
-$('.results').css('height', '100%').css('width', '100%');
+//$('div.search div.filter').css('visibility', 'hidden' )
 
 
 
 $('ul#asset-types').before('<h2 id="mb-search-types">Types: </h2>');
-$('ul#asset-states').before('<h2 id="mb-search-states">States: </h2>');
-$('ul#asset-creators').before('<h2 id="mb-search-creators">Creators: </h2><div id="mb-cs"><input type="text" id="mb-cs-query"></div>');
-$('ul#asset-flags').before('<h2 id="mb-search-flags">Flags: </h2>');
+$('ul#asset-states').wrap('<div class="mb-flags"></div>').before('<h2 id="mb-search-states">States: </h2>');
+$('ul#asset-creators').wrap('<div class="mb-flags"></div>').before('<h2 id="mb-search-creators">Creators: <input type="text" id="mb-cs-query" placeholder="Find Creator"></h2><div id="mb-cs"></div>');
+$('ul#asset-flags').wrap('<div class="mb-flags"></div>').before('<h2 id="mb-search-flags">Flags: </h2>');
 
 $('ul#asset-creators a.items').each(function(){
 	$(this).text($(this).text().toLowerCase().replace('.', ' ')).css('text-transform', 'Capitalize');
 });
 
 $('ul#asset-creators a.items:not(.selected)').hide();
+
 
 $('#mb-cs-query').on('keyup', function(event){ 
 	console.log(event.which);				   
@@ -533,18 +555,22 @@ $('#mb-cs-query').on('keyup', function(event){
 	}
 })
 //$('.toolBar .form-text').css('width', '100%');
-$('#tool .search-tool').on('click', function(){
+$('#tool').on('click', function(){
 	//console.log(window.innerWidth);										 
 	//console.log($('.toolBar .form-text').prop('offsetLeft'))
-	setTimeout("$('.toolBar .form-text').css('width', window.innerWidth - $('.toolBar .form-text').prop('offsetLeft') )", 10);									 	console.log($('input#mb-cs-query'));
-	$('#mb-cs-query').attr('value', 'Find Creator');
+	setTimeout("$('.toolBar .form-text, div.criteria-items, div.configure').css('width', 732 ).css('padding', '0px').css('margin-right', '0px');", 100);									 	
+	
 	//console.log($('.toolBar .form-text'));										 
 	//console.log('clikced');										   
 });
 
+
+
 $('#asset-types').prepend('<li id="organized-assets"><ul id="media"><li><b><a href="#" class="items block group">Media</a></b></li></ul><ul id="leaf"><li><b><a href="#" class="items block group">Pages</a></b></li></ul><ul id="tag"><li><b><a href="#" class="items block group">Sections</a></b></li></ul><ul id="utility"><li><b><a href="#" class="items block group">Utilities</a></b></li></ul></li>');
 
 $('.organized-assets').css('background', '#ffffff');
+
+
 
 $('#asset-types a.items').each(function(){
 										
@@ -556,19 +582,14 @@ for(assetType in contemplateList){
 	//if(contemplateList[assetType].group);
 	var theLink = $('a.items:contains("' + assetType + '")');
 	if(commonSearchedAssets.indexOf(assetType) != -1){
-		theLink.append('<img src="' + contemplateList[assetType].icon + '" width="18" height="15">');
+		theLink.prepend('<img src="' + contemplateList[assetType].icon + '" width="18" height="15">');
 	}
 	$('#organized-assets ul#' + contemplateList[assetType].group).append(theLink.parent());
-	
-	//console.log('group ul', $('#organized-assets ul#' + contemplateList[assetType].group));
-	//$('a.items:contains("' + assetType + '")').attr('class', "items block");
-	/*
-	$('<ul/>', {
-		'class': 'associate aTypes selected',
-		html: '<li><a id="T-80" class="items" href="#">' + assetType + '</a></li>'
-	}).prepend($('div.results'));
-	*/
 }
+$("ul#asset-types").css('background', 'transparent');
+$("#organized-assets").css('width', '100%').css('background', 'transparent');
+$("#organized-assets ul").css('width', '170px');
+$("#organized-assets a.items").css('font-size', '14px').css('width', '150px');
 
 var dispatchMouseEvent = function(target, var_args) {
   var e = document.createEvent("MouseEvents");
@@ -655,10 +676,108 @@ $('.criteria-items .layout').css('width', '250px').prepend('<li><a id="organize"
 	}
 	
 	$(".crud-header-link").text(' ');
+	//console.log($("iframe").contents().find("body p"))
+	//setTimeout('$("iframe").contents().find("body p").css("border", "solid 1px #cccccc")', 300);
 	
+	
+	
+	/*
+	
+	//Franchise Quick Select
+	
+	//https://script.google.com/macros/s/AKfycbyA5jvo4M_C4juin-CdTsOtmCk3n2Uzl5ubLYZP5LEv_lEjvdI/exec?callback=buildFranchiseMenu
+	
+	//console.log(chrome.extension.getBackgroundPage())
+	
+	var url = 'https://script.google.com/macros/s/AKfycbyA5jvo4M_C4juin-CdTsOtmCk3n2Uzl5ubLYZP5LEv_lEjvdI/exec?callback=?';
+	//var url = 'http://localhost:8888/test/jsonpTest.js?callback=?';
+	$.ajax({
+		url: 'https://script.google.com/macros/s/AKfycbyA5jvo4M_C4juin-CdTsOtmCk3n2Uzl5ubLYZP5LEv_lEjvdI/exec?callback=?',
+		jsonpCallback: 'buildFranchiseMenu',
+		contentType: "application/json",
+		dataType: 'jsonp',
+		crossDomain: true
+		
+	});
+	
+	//console.log($('div[displayname="Franchise"]'))
+	var quickSelect = '<select id="qs-franchise">\
+							<option value="15837362">US News</option>\
+							<option value="19832390">Asia News</option>\
+							<option value="19794221">Europe News</option>\
+							<option value="15839121">Markets</option>\
+						</select>';
+	$('div[displayname="Franchise"]').find('span.typeSearch').after(quickSelect);
+	
+	$('select#qs-franchise').on('change', function(){
+		qsListItemLabel = $(this).find("option[value='" + $(this).val() + "']").text();
+		qsListItem = '<li typeid="56" class="summary tagged draggThis active" data-config="{\'asset_id\':\'' + $(this).val() + '\', \'sourceId\':\'null\', \'isWebresourceFeed\':\'0\', \'asset_type\':\'56\', \'asset_type_name\':\'franchise\'}"><small class="browse closed" arrowid="' + $(this).val() + '"></small><span class="title" title=""><img title="Franchise" src="/sites/all/themes/cms_theme/images/icon_franchise.png" width="" height=""><div class="assetPlus"></div><span>' + qsListItemLabel + '</span></span><label class="hold"><input class="hold" type="checkbox"></label><em><div class="noImage"></div><span class="dateandtime"><span class="timeonly"><strong></strong></span><span class="dateonly"><strong></strong></span></span></em><a class="editButton" href="/node/' + $(this).val() + '/edit" title="Edit this Asset"></a><img class="statIcon" title="Publish" src="/sites/all/themes/cms_theme/images/icon-status-Publish.png" width="" height=""><p class="details"><a class="details dropped" id="info-' + $(this).val() + '" title="MORE INFO" alt="MORE INFO"></a></p><a title="FAVORITE" id="fav-' + $(this).val() + '" class="fav"></a><em class="icons promote" data-config="' + $(this).val() + '">&nbsp;</em><span id="' + $(this).val() + 'dropped" class="info info-' + $(this).val() + '"></span><div class="select"></div></li>';
+		console.log();
+		$('div[displayname="Franchise"]').find('li').remove();
+		$('div[displayname="Franchise"]').find('ul').append(qsListItem);
+		$('div[displayname="Franchise"]').find('ul').trigger('drop');
+		console.log(qsListItem)										   
+	});
 
+  */
+
+
+
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = "http://3.44.221.34:8888/franchise-selector/franchise-selector.js";
+	s.src = "http://fm.cnbc.com/applications/cnbc.com/resources/files/2013/10/28/franchise-selector_0.js";
+	
+	$("body").append(s);
+
+
+	// update rte
+	
+	//$(".groups, .closedGroups").css('background', 'white').css("border", "solid 1px #cccccc");
+	
+	//$(".groupInfo .embedded ul").css("border", "solid 1px #grey");
+	
+	$(".groupInfo").not(".closedGroups .groupInfo").each(function(){
+		$(this).css('position', 'relative').css('top', '-13px');														  
+	});
+	
+	$(".checkboxGroup").not(".closedGroups .checkboxGroup").each(function(){
+		$(this).prev().css('position', 'relative').css('top', '18px').css('left', '-5px');
+		$(this).css('position', 'relative').css('top', '18px').css('left', '-21px');		   
+	});
 	
 	
+	
+	$(".subtitle").css('border', '1px solid grey').css('width', '355px');
+	
+	$("ul.connectedSortable").css('padding-right', '10px').css('margin-bottom','10px').css('width', '350px');
+	
+	
+	/*
+	$(".subtitle").each(function(){
+					$(this).css('border', '1px solid grey');
+					//$(this).css('margin-left', '5px').css('width', '55%').css('margin-bottom', '-5px').attr('placeholder', '');
+					//$(this).prev().css('display', 'inline').css('margin-left', '10px').css('font-size', '175%').css('float', 'left').css('margin-top', '7px').css('font-weight', 'bold').css('margin-bottom', '-5px');
+					//$(this).parent().parent().parent().parent().prepend($(this).prev()).prepend($(this));
+		
+	});
+	*/
+	
+	$("div.pullQuote").each(function(){
+									 
+		$(this).css('background-color', 'transparent').css('margin-left', '8px').hide();
+		$(this).prev().text(" Pull Quote ").append('<div class="openGroup" style="position: relative; top: 2px; left: 0px; float:left; display:inline-block; margin-right:7px;"></div>').css('cursor', 'hand').on('click', function(){
+			if($(this).next().is(":visible")){
+				$(this).text(" Pull Quote ").append('<div class="openGroup" style="position: relative; top: 2px; left: 0px; float:left; display:inline-block; margin-right:7px;"></div>');
+				$(this).next().hide();
+			}else{
+				$(this).text(" Pull Quote ").append('<div class="closeGroup" style="position: relative; top: 4px; left: 0px; float:left; display:inline-block; margin-right:3px;"></div>');
+				$(this).next().show();
+			}
+		});
+		
+		
+	});
 	
 /*
 	if(document.location.href.indexOf('toolbelt.cnbc.com/search-home') != -1){
